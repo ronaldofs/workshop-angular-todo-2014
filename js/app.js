@@ -52,9 +52,9 @@
       restrict: 'A',
       scope: true,
       template:
-        '<form class="gb-todo-form">' +
-          '<input type="text" ng-model="ctrl.newTodo.title">' +
-          '<button ng-click="ctrl.addTodo()">Add new todo</button>' +
+        '<form name="todoForm" class="gb-todo-form">' +
+          '<input type="text" ng-model="ctrl.newTodo.title" required>' +
+          '<button ng-click="ctrl.addTodo()" ng-disabled="todoForm.$invalid">Add new todo</button>' +
         '</form>',
       controller: 'TodoFormCtrl',
       controllerAs: 'ctrl'
