@@ -7,14 +7,15 @@
     .constant('TodoFilters', _getTodoFilters())
     .value('TodoModel', _getTodoModel())
     .directive('gbTodoForm', TodoForm)
-    .controller('TodoFormCtrl', TodoFormCtrl);
+    .controller('TodoFormCtrl', TodoFormCtrl)
+    .factory('_', Lodash);
 
-  function TodoListCtrl(TodoList, TodoFilters) {
+  function TodoListCtrl(_, TodoList, TodoFilters) {
     var ctrl = this;
 
     ctrl.todos = TodoList.items;
     ctrl.filters = TodoFilters;
-    ctrl.selectedFilter = ctrl.filters[0];
+    ctrl.selectedFilter = _.first(ctrl.filters);
   }
 
   function TodoList() {
@@ -72,6 +73,10 @@
 
       ctrl.newTodo = new TodoModel();
     }
+  }
+
+  function Lodash() {
+    return window._;
   }
 
 })();
