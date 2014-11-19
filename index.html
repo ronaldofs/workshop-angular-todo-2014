@@ -17,10 +17,7 @@
     <div ng-app="app">
       <h1>Todo list</h1>
       <div ng-controller="TodoListCtrl as ctrl">
-        <div class="new-todo">
-          <input type="text" ng-model="ctrl.newTodo.title">
-          <button ng-click="ctrl.addTodo(ctrl.newTodo)">Add new todo</button>
-        </div>
+        <div gb-todo-form></div>
         <div class="todo-filters">
           <label>Filter by:</label>
           <select ng-model="ctrl.selectedFilter" ng-options="filter.title for filter in ctrl.filters">
