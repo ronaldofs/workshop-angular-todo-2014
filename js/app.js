@@ -17,16 +17,37 @@
     ctrl.todos = TodoList.items;
     ctrl.filters = TodoFilters;
     ctrl.selectedFilter = _.first(ctrl.filters);
+
+    ctrl.getTotalTodos = getTotalTodos;
+    ctrl.getTotalDone = getTotalDone;
+
+    function getTotalTodos() {
+      return TodoList.getTotalTodos();
+    }
+
+    function getTotalDone() {
+      return TodoList.getTotalDone();
+    }
   }
 
-  function TodoList() {
+  function TodoList(_) {
     return {
       items: [],
-      addTodo: addTodo
+      addTodo: addTodo,
+      getTotalTodos: getTotalTodos,
+      getTotalDone: getTotalDone
     };
 
     function addTodo(todo) {
       this.items.push(todo);
+    }
+
+    function getTotalTodos() {
+      return _.where(this.items, { done: false }).length;
+    }
+
+    function getTotalDone() {
+      return _.where(this.items, { done: true }).length;
     }
   }
 

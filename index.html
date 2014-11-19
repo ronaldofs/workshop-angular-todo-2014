@@ -27,6 +27,9 @@
           </select>
         </div>
         <div class="todo-list">
+          <div class="todo-counters">
+            <span>Total todos: {{ctrl.getTotalTodos()}}</span> <span>Total done: {{ctrl.getTotalDone()}}</span>
+          </div>
           <div class="todo-item" ng-repeat="todo in ctrl.todos | orderBy:'done':true | filter:ctrl.selectedFilter.value">
             <p>
               <span ng-hide="todo.done">{{todo.title}}</span>
