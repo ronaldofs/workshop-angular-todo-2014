@@ -11,8 +11,19 @@
     ctrl.newTodo = null;
     ctrl.addTodo = addTodo;
 
+    ctrl.filters = [
+      { title: 'All' },
+      { title: 'Todo', value: { done: false } },
+      { title: 'Done', value: { done: true } }
+    ];
+    ctrl.selectedFilter = ctrl.filters[0];
+
     function addTodo(todo) {
-      ctrl.todos.push(todo);
+      ctrl.todos.push({
+        title: todo.title,
+        done: false
+      });
+
       ctrl.newTodo = null;
     }
   }

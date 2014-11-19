@@ -21,8 +21,13 @@
           <input type="text" ng-model="ctrl.newTodo.title">
           <button ng-click="ctrl.addTodo(ctrl.newTodo)">Add new todo</button>
         </div>
+        <div class="todo-filters">
+          <label>Filter by:</label>
+          <select ng-model="ctrl.selectedFilter" ng-options="filter.title for filter in ctrl.filters">
+          </select>
+        </div>
         <div class="todo-list">
-          <div class="todo-item" ng-repeat="todo in ctrl.todos | orderBy:'done':true">
+          <div class="todo-item" ng-repeat="todo in ctrl.todos | orderBy:'done':true | filter:ctrl.selectedFilter.value">
             <p>
               <span ng-hide="todo.done">{{todo.title}}</span>
               <s ng-show="todo.done">{{todo.title}}</s>
