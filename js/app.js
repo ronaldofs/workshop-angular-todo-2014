@@ -4,13 +4,16 @@
     .module('app', [])
     .controller('TodoListCtrl', TodoListCtrl);
 
-  function TodoListCtrl($scope) {
-    $scope.todos = [];
-    $scope.newTodo = null;
+  function TodoListCtrl() {
+    var ctrl = this;
 
-    $scope.addTodo = function(todo) {
-      $scope.todos.push(todo);
-      $scope.newTodo = null;
-    };
+    ctrl.todos = [];
+    ctrl.newTodo = null;
+    ctrl.addTodo = addTodo;
+
+    function addTodo(todo) {
+      ctrl.todos.push(todo);
+      ctrl.newTodo = null;
+    }
   }
 })();

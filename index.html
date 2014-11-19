@@ -16,13 +16,13 @@
     <!-- Initialize angular module 'app' -->
     <div ng-app="app">
       <h1>Todo list</h1>
-      <div ng-controller="TodoListCtrl">
+      <div ng-controller="TodoListCtrl as ctrl">
         <div class="new-todo">
-          <input type="text" ng-model="newTodo.title">
-          <button ng-click="addTodo(newTodo)">Add new todo</button>
+          <input type="text" ng-model="ctrl.newTodo.title">
+          <button ng-click="ctrl.addTodo(ctrl.newTodo)">Add new todo</button>
         </div>
         <div class="todo-list">
-          <div class="todo-item" ng-repeat="todo in todos | orderBy:'done':true">
+          <div class="todo-item" ng-repeat="todo in ctrl.todos | orderBy:'done':true">
             <p>
               <span ng-hide="todo.done">{{todo.title}}</span>
               <s ng-show="todo.done">{{todo.title}}</s>
