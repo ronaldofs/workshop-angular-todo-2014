@@ -4,13 +4,14 @@
     .module('app', [])
     .controller('TodoListCtrl', TodoListCtrl)
     .factory('TodoList', TodoList)
-    .constant('TodoFilters', _getTodoFilters());
+    .constant('TodoFilters', _getTodoFilters())
+    .value('TodoModel', _getTodoModel());
 
-  function TodoListCtrl(TodoList, TodoFilters) {
+  function TodoListCtrl(TodoList, TodoFilters, TodoModel) {
     var ctrl = this;
 
     ctrl.todos = TodoList.items;
-    ctrl.newTodo = null;
+    ctrl.newTodo = new TodoModel();
     ctrl.addTodo = addTodo;
 
     ctrl.filters = TodoFilters;
@@ -19,7 +20,7 @@
     function addTodo(todo) {
       TodoList.addTodo(todo);
 
-      ctrl.newTodo = null;
+      ctrl.newTodo = new TodoModel();
     }
   }
 
@@ -30,10 +31,7 @@
     };
 
     function addTodo(todo) {
-      this.items.push({
-        title: todo.title,
-        done: false
-      });
+      this.items.push(todo);
     }
   }
 
@@ -45,6 +43,15 @@
     ];
 
     return filters;
+  }
+
+  function _getTodoModel() {
+    function Todo(title, done) {
+      this.title = title || '';
+      this.done = done || false;
+    }
+
+    return Todo;
   }
 
 })();
