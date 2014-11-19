@@ -31,7 +31,7 @@
             <p>
               <span ng-hide="todo.done">{{todo.title}}</span>
               <s ng-show="todo.done">{{todo.title}}</s>
-              <input type="checkbox" ng-value="todo.done" ng-click="todo.done = !todo.done">
+              <input type="checkbox" ng-model="todo.done">
             </p>
           </div>
         </div>
