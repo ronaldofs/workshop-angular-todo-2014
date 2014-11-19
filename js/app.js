@@ -2,12 +2,13 @@
   // Define an angular module with a list of dependencies
   angular
     .module('app', [])
-    .controller('TodoListCtrl', TodoListCtrl);
+    .controller('TodoListCtrl', TodoListCtrl)
+    .factory('TodoList', TodoList);
 
-  function TodoListCtrl() {
+  function TodoListCtrl(TodoList) {
     var ctrl = this;
 
-    ctrl.todos = [];
+    ctrl.todos = TodoList.items;
     ctrl.newTodo = null;
     ctrl.addTodo = addTodo;
 
@@ -19,12 +20,24 @@
     ctrl.selectedFilter = ctrl.filters[0];
 
     function addTodo(todo) {
-      ctrl.todos.push({
-        title: todo.title,
-        done: false
-      });
+      TodoList.addTodo(todo);
 
       ctrl.newTodo = null;
     }
   }
+
+  function TodoList() {
+    return {
+      items: [],
+      addTodo: addTodo
+    };
+
+    function addTodo(todo) {
+      this.items.push({
+        title: todo.title,
+        done: false
+      });
+    }
+  }
+
 })();
