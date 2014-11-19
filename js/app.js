@@ -3,20 +3,17 @@
   angular
     .module('app', [])
     .controller('TodoListCtrl', TodoListCtrl)
-    .factory('TodoList', TodoList);
+    .factory('TodoList', TodoList)
+    .constant('TodoFilters', _getTodoFilters());
 
-  function TodoListCtrl(TodoList) {
+  function TodoListCtrl(TodoList, TodoFilters) {
     var ctrl = this;
 
     ctrl.todos = TodoList.items;
     ctrl.newTodo = null;
     ctrl.addTodo = addTodo;
 
-    ctrl.filters = [
-      { title: 'All' },
-      { title: 'Todo', value: { done: false } },
-      { title: 'Done', value: { done: true } }
-    ];
+    ctrl.filters = TodoFilters;
     ctrl.selectedFilter = ctrl.filters[0];
 
     function addTodo(todo) {
@@ -38,6 +35,16 @@
         done: false
       });
     }
+  }
+
+  function _getTodoFilters() {
+    var filters = [
+      { title: 'All' },
+      { title: 'Todo', value: { done: false } },
+      { title: 'Done', value: { done: true } }
+    ];
+
+    return filters;
   }
 
 })();
