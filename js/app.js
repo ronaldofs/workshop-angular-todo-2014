@@ -8,7 +8,8 @@
     .value('TodoModel', _getTodoModel())
     .directive('gbTodoForm', TodoForm)
     .controller('TodoFormCtrl', TodoFormCtrl)
-    .factory('_', Lodash);
+    .factory('_', Lodash)
+    .filter('priorityLabel', PriorityLabelFilter);
 
   function TodoListCtrl(_, TodoList, TodoFilters) {
     var ctrl = this;
@@ -40,9 +41,10 @@
   }
 
   function _getTodoModel() {
-    function Todo(title, done) {
+    function Todo(title, done, priority) {
       this.title = title || '';
       this.done = done || false;
+      this.priority = priority || 0;
     }
 
     return Todo;
@@ -55,6 +57,7 @@
       template:
         '<form name="todoForm" class="gb-todo-form">' +
           '<input type="text" ng-model="ctrl.newTodo.title" required>' +
+          '<input type="number" min="0" max="2" ng-model="ctrl.newTodo.priority">' +
           '<button ng-click="ctrl.addTodo()" ng-disabled="todoForm.$invalid">Add new todo</button>' +
         '</form>',
       controller: 'TodoFormCtrl',
@@ -77,6 +80,13 @@
 
   function Lodash() {
     return window._;
+  }
+
+  function PriorityLabelFilter() {
+    return function(priority) {
+      labels = {0: 'Not important', 1: 'Somewhat important', 2: 'Important'};
+      return labels[priority];
+    };
   }
 
 })();
