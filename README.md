@@ -1,0 +1,2 @@
+# workshop-angular-todo-2014
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/azevedo-252/workshop-angular-todo-2014?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
