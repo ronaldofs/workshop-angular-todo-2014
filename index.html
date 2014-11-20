@@ -4,9 +4,9 @@
     <title>AngularJS Workshop</title>
 
     <!-- Load angular lib dependency -->
-    <script src="js/vendor/angular.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/vendor/angular.min.js" type="text/javascript" charset="utf-8"></script>
     <!-- Alternative for loading angular lib from cdn -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js" type="text/javascript" charset="utf-8"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js" type="text/javascript" charset="utf&#45;8"></script> -->
 
     <!-- Load vendor js files -->
     <script src="js/vendor/lodash.js" type="text/javascript" charset="utf-8"></script>
@@ -31,6 +31,7 @@
             <p>
               <span ng-hide="todo.done">{{todo.title}}</span>
               <s ng-show="todo.done">{{todo.title}}</s>
+              <span> - {{todo.priority | priorityLabel}}</span>
               <input type="checkbox" ng-model="todo.done">
             </p>
           </div>
